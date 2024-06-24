@@ -15,4 +15,10 @@ const createToy = (newToy) => {
   }).then((resp) => resp.json())
 }
 
-export { getToys, createToy }
+const deleteToy = (id) => {
+  return fetch(api + id, {
+    method: "Delete",
+  })
+}
+
+export { getToys, createToy, deleteToy }

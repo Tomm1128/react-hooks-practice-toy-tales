@@ -21,6 +21,11 @@ function App() {
     setToys([...toys, newToy])
   }
 
+  const removeToy = (id) => {
+    const newToyList = toys.filter((toy) => toy.id !== id)
+    setToys(newToyList)
+  }
+
   return (
     <>
       <Header />
@@ -28,7 +33,11 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      {toys ? <ToyContainer toys={toys} /> : <h1>Loading...</h1>}
+      {toys ? (
+        <ToyContainer toys={toys} removeToy={removeToy} />
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </>
   )
 }
