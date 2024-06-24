@@ -3,6 +3,7 @@ import { deleteToy, updateToy } from "../services/api"
 
 function ToyCard({ toy, onDelete, onUpdate }) {
   const { id, name, image, likes } = toy
+
   const handleDelete = () => {
     deleteToy(id).then(() => onDelete(id))
   }

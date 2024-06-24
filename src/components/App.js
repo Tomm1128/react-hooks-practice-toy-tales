@@ -22,13 +22,9 @@ function App() {
   }
 
   const updateToy = (updatedToy) => {
-    const updatedToyList = toys.map((toy) => {
-      if (toy.id === updatedToy.id) {
-        return updatedToy
-      } else {
-        return toy
-      }
-    })
+    const updatedToyList = toys.map((toy) =>
+      toy.id === updatedToy.id ? updatedToy : toy
+    )
     setToys(updatedToyList)
   }
 
@@ -45,7 +41,7 @@ function App() {
         <button onClick={handleClick}>Add a Toy</button>
       </div>
       {toys ? (
-        <ToyContainer toys={toys} removeToy={removeToy} updateToy={updateToy} />
+        <ToyContainer toys={toys} onDelete={removeToy} onUpdate={updateToy} />
       ) : (
         <h1>Loading...</h1>
       )}
