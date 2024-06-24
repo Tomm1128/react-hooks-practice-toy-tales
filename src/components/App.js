@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"
 
-import Header from "./Header";
-import ToyForm from "./ToyForm";
-import ToyContainer from "./ToyContainer";
+import Header from "./Header"
+import ToyForm from "./ToyForm"
+import ToyContainer from "./ToyContainer"
+import { getToys } from "../services/api"
 
 function App() {
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false)
+  const [toys, setToys] = useState(null)
+
+  useEffect(() => {
+    getToys().then((toysList) => setToys(toysList))
+  }, [])
 
   function handleClick() {
-    setShowForm((showForm) => !showForm);
+    setShowForm((showForm) => !showForm)
   }
 
   return (
@@ -18,9 +24,9 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer />
+      {toys ? <ToyContainer toys={toys} /> : <h1>Loading...</h1>}
     </>
-  );
+  )
 }
 
-export default App;
+export default App
