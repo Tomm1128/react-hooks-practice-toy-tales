@@ -4,14 +4,14 @@ const getToys = () => {
   return fetch(api).then((resp) => resp.json())
 }
 
-const createToy = (toy) => {
+const createToy = (newToy) => {
   return fetch(api, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(toy),
+    body: JSON.stringify(newToy),
   }).then((resp) => resp.json())
 }
 
