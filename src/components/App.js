@@ -17,8 +17,19 @@ function App() {
     setShowForm((showForm) => !showForm)
   }
 
-  const updateToyCards = (newToy) => {
+  const AddNewToy = (newToy) => {
     setToys([...toys, newToy])
+  }
+
+  const updateToy = (updatedToy) => {
+    const updatedToyList = toys.map((toy) => {
+      if (toy.id === updatedToy.id) {
+        return updatedToy
+      } else {
+        return toy
+      }
+    })
+    setToys(updatedToyList)
   }
 
   const removeToy = (id) => {
@@ -29,12 +40,12 @@ function App() {
   return (
     <>
       <Header />
-      {showForm ? <ToyForm updateToyCards={updateToyCards} /> : null}
+      {showForm ? <ToyForm AddNewToy={AddNewToy} /> : null}
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
       {toys ? (
-        <ToyContainer toys={toys} removeToy={removeToy} />
+        <ToyContainer toys={toys} removeToy={removeToy} updateToy={updateToy} />
       ) : (
         <h1>Loading...</h1>
       )}

@@ -6,7 +6,7 @@ const initializeForm = {
   image: "",
 }
 
-function ToyForm({ updateToyCards }) {
+function ToyForm({ AddNewToy }) {
   const [formData, setFormData] = useState(initializeForm)
 
   const handleChange = (event) => {
@@ -22,7 +22,7 @@ function ToyForm({ updateToyCards }) {
       ...formData,
       likes: 0,
     }
-    createToy(newToy).then((newToyResp) => updateToyCards(newToyResp))
+    createToy(newToy).then((newToyResp) => AddNewToy(newToyResp))
   }
 
   return (
